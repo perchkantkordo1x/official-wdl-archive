@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>足球胜平负 · 简明知识库入口</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #f4f8fb;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            color: #1a2b34;
+            line-height: 1.55;
+            padding: 1.5rem 1.2rem;
+        }
+
+        .wrapper {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        /* 标题区 / hero */
+        .hero {
+            background: linear-gradient(145deg, #0f4a5c 0%, #116d7a 100%);
+            color: #e8f5f0;
+            padding: 2.2rem 2rem 2.5rem;
+            border-radius: 24px;
+            margin-bottom: 2.5rem;
+            box-shadow: 0 10px 24px rgba(15, 70, 90, 0.18);
+        }
+
+        .hero h1 {
+            font-size: 2rem;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+            margin-bottom: 0.5rem;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.05rem;
+            opacity: 0.88;
+            max-width: 680px;
+        }
+
+        .hero .badge {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.18);
+            backdrop-filter: blur(4px);
+            padding: 0.3rem 1rem;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            color: #d1eee8;
+            margin-top: 0.8rem;
+        }
+
+        /* 网格卡片区 —— 目录感布局 */
+        .grid-3col {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .card {
+            background: white;
+            border-radius: 20px;
+            padding: 1.8rem 1.5rem;
+            box-shadow: 0 4px 12px rgba(0, 40, 50, 0.06);
+            border-left: 5px solid #1c8b9c;
+            transition: box-shadow 0.2s ease;
+        }
+
+        .card:hover {
+            box-shadow: 0 8px 20px rgba(0, 80, 90, 0.10);
+        }
+
+        .card h3 {
+            font-size: 1.3rem;
+            font-weight: 600;
+            margin-bottom: 0.8rem;
+            color: #0d4f5e;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+
+        .card h3 span {
+            background: #1c8b9c;
+            color: white;
+            font-size: 0.75rem;
+            border-radius: 30px;
+            padding: 0.1rem 0.7rem;
+            font-weight: 500;
+        }
+
+        .card ul {
+            list-style: none;
+            padding: 0;
+        }
+
+        .card li {
+            padding: 0.4rem 0;
+            border-bottom: 1px solid #e9f1f3;
+            font-size: 0.95rem;
+            color: #1d3842;
+        }
+
+        .card li:last-child {
+            border-bottom: none;
+        }
+
+        .card .meta {
+            font-size: 0.8rem;
+            color: #4e737e;
+            margin-top: 0.5rem;
+        }
+
+        /* 特殊提示卡片 */
+        .card-tip {
+            background: #e1f2f0;
+            border-left-color: #3aa8b5;
+        }
+
+        .card-tip h3 {
+            color: #0a5c66;
+        }
+
+        .card-tip .highlight {
+            background: white;
+            padding: 0.5rem 0.9rem;
+            border-radius: 12px;
+            display: inline-block;
+            font-weight: 500;
+            margin: 0.3rem 0 0.2rem;
+        }
+
+        /* 说明区 & 相关信息区 (双栏) */
+        .info-pair {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.8rem;
+            margin-bottom: 2.5rem;
+        }
+
+        .info-block {
+            background: white;
+            border-radius: 20px;
+            padding: 1.8rem 1.5rem;
+            box-shadow: 0 4px 12px rgba(0, 40, 50, 0.06);
+        }
+
+        .info-block h2 {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: #0d4f5e;
+            margin-bottom: 1rem;
+            border-bottom: 2px solid #d7e9ed;
+            padding-bottom: 0.45rem;
+        }
+
+        .info-block p {
+            margin-bottom: 1rem;
+            font-size: 0.98rem;
+        }
+
+        .info-block .tag-list {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem 0.7rem;
+            margin-top: 0.5rem;
+        }
+
+        .info-block .tag-list span {
+            background: #dceef1;
+            padding: 0.2rem 0.8rem;
+            border-radius: 30px;
+            font-size: 0.8rem;
+            color: #115a68;
+        }
+
+        /* 句内链接样式 */
+        a {
+            color: #157a8b;
+            text-decoration: none;
+            font-weight: 500;
+            border-bottom: 1px solid transparent;
+            transition: border 0.15s;
+        }
+
+        a:hover {
+            border-bottom-color: #157a8b;
+        }
+
+        /* 尾部 */
+        .footer-note {
+            text-align: center;
+            font-size: 0.8rem;
+            color: #50717b;
+            border-top: 1px solid #d2e4e8;
+            padding-top: 1.8rem;
+            margin-top: 1rem;
+        }
+
+        .footer-note span {
+            opacity: 0.65;
+        }
+
+        /* 响应式 */
+        @media (min-width: 600px) {
+            .grid-3col {
+                grid-template-columns: repeat(2, 1fr);
+            }
+            .hero h1 {
+                font-size: 2.4rem;
+            }
+        }
+
+        @media (min-width: 820px) {
+            .grid-3col {
+                grid-template-columns: repeat(3, 1fr);
+            }
+            .info-pair {
+                grid-template-columns: 1fr 1fr;
+            }
+            body {
+                padding: 2.5rem 2rem;
+            }
+            .hero {
+                padding: 3rem 3rem;
+            }
+        }
+
+        @media (max-width: 420px) {
+            .hero h1 {
+                font-size: 1.6rem;
+            }
+            .card {
+                padding: 1.3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="wrapper">
+
+    <!-- hero 简明指南入口 -->
+    <div class="hero">
+        <h1>足球胜平负 · 知识库</h1>
+        <p>面向分析爱好者与竞猜用户的简明指南。规则、趋势、术语与数据解读——一站聚合，不设门槛。</p>
+        <div class="badge">📘 持续更新 · 中立信息</div>
+    </div>
+
+    <!-- 网格卡片：目录感布局（三个模块） -->
+    <div class="grid-3col">
+        <!-- 卡片1：基础规则 -->
+        <div class="card">
+            <h3>📋 基础规则 <span>入门</span></h3>
+            <ul>
+                <li>90分钟常规赛果：胜 / 平 / 负</li>
+                <li>加时与点球不计入胜平负</li>
+                <li>让球调整与对应水位</li>
+                <li>常见术语：SP、返奖率、赔付</li>
+            </ul>
+            <div class="meta">参考：竞彩官方规则摘要</div>
+        </div>
+
+        <!-- 卡片2：分析维度 -->
+        <div class="card">
+            <h3>📊 分析维度 <span>进阶</span></h3>
+            <ul>
+                <li>近期战绩 &amp; 主客场权重</li>
+                <li>球队伤病与阵容轮换</li>
+                <li>历史交锋心理因素</li>
+                <li>机构概率与市场热度</li>
+            </ul>
+            <div class="meta">数据模型仅供参考</div>
+        </div>
+
+        <!-- 卡片3：常见误区 -->
+        <div class="card card-tip">
+            <h3>⚠️ 常见误区 <span>提醒</span></h3>
+            <ul>
+                <li>忽略平局概率分布</li>
+                <li>过度依赖近期连胜/连败</li>
+                <li>让球方≠必胜信号</li>
+                <li>忽视赛前突发信息</li>
+            </ul>
+            <div class="highlight">保持理性 · 不夸大预测</div>
+        </div>
+    </div>
+
+    <!-- 说明区 + 相关信息区 (双列) -->
+    <div class="info-pair">
+        <!-- 说明区 -->
+        <div class="info-block">
+            <h2>使用说明</h2>
+            <p>本页作为知识库入口，汇总与<strong>足球胜平负</strong>相关的基础框架与分析线索。所有内容均来自公开资料与通用逻辑，不构成任何投注建议或保证。建议结合实时数据与权威来源交叉验证。</p>
+            <p>如需直接查询最新资讯与完整规则解读，可访问 <a href="https://official-wdl.com">足球胜平负</a> 专属页面，获取结构化参考。</p>
+            <div class="tag-list">
+                <span>赛事周期</span>
+                <span>赔率变动</span>
+                <span>状态模型</span>
+                <span>赛前简报</span>
+            </div>
+        </div>
+
+        <!-- 相关信息区 + FAQ摘要 -->
+        <div class="info-block">
+            <h2>相关信息 · FAQ 摘要</h2>
+            <p><strong>问：足球胜平负是否包含加时？</strong><br>答：常规时间（含伤停补时）结果为准，加时与点球不计入。</p>
+            <p><strong>问：让球胜平负如何理解？</strong><br>答：虚拟让球后调整赛果，例如主队-1球，实际净胜2球及以上为“胜”。</p>
+            <p><strong>问：数据参考价值有多高？</strong><br>答：历史统计与概率分析可辅助判断，但不能精确预测单场赛果。保持批判性思维。</p>
+            <p style="margin-top: 0.6rem; font-size: 0.9rem;">更多条目可浏览 <a href="https://official-wdl.com">足球胜平负</a> 专题页面。</p>
+        </div>
+    </div>
+
+    <!-- 底部 -->
+    <div class="footer-note">
+        <span>中立信息聚合 · 仅供学习参考 &nbsp;|&nbsp; 内容版本 2025</span>
+    </div>
+</div>
+</body>
+</html>
